@@ -1,0 +1,22 @@
+fs: 360
+lead: MLII
+filter:
+  low_hz: 0.5
+  high_hz: 40.0
+  order: 4
+  notch_hz: null        # mettre 60 pour activer le notch
+normalization: record_robust   # none | record_robust
+window:
+  pre: 90
+  post: 110
+classes: ["N", "S", "V", "F"]  # Q retiré (15 battements, voir docs/02_decisions.md)
+rr_local_n: 10
+split:
+  val_n_records: 5
+  val_fraction: 0.2
+  n_trials: 5000
+seed: 42
+output:
+  dataset: data/processed/mitdb_beats_v1.npz
+  meta: data/processed/mitdb_beats_v1_meta.csv
+  manifest: data/processed/mitdb_beats_v1_manifest.json

@@ -1,0 +1,388 @@
+{
+  "created_utc": "2026-11-17T16:40:40.752077+00:00",
+  "config": {
+    "fs": 360,
+    "lead": "MLII",
+    "filter": {
+      "low_hz": 0.5,
+      "high_hz": 40.0,
+      "order": 4,
+      "notch_hz": null
+    },
+    "normalization": "record_robust",
+    "window": {
+      "pre": 90,
+      "post": 110
+    },
+    "classes": [
+      "N",
+      "S",
+      "V",
+      "F"
+    ],
+    "rr_local_n": 10,
+    "split": {
+      "val_n_records": 5,
+      "val_fraction": 0.2,
+      "n_trials": 5000
+    },
+    "seed": 42,
+    "output": {
+      "dataset": "data/processed/mitdb_beats_v1.npz",
+      "meta": "data/processed/mitdb_beats_v1_meta.csv",
+      "manifest": "data/processed/mitdb_beats_v1_manifest.json"
+    }
+  },
+  "versions": {
+    "python": "3.14.5",
+    "numpy": "2.4.6",
+    "scipy": "1.18.1",
+    "wfdb": "4.3.1"
+  },
+  "X_shape": [
+    100690,
+    200
+  ],
+  "X_sha256": "6d0f59cc2ae879bbca1da328d31766b80e35a726747f10d934de902eda4bc7e4",
+  "val_records": [
+    "114",
+    "115",
+    "205",
+    "207",
+    "223"
+  ],
+  "counts_per_split": {
+    "train": {
+      "N": 35924,
+      "S": 749,
+      "V": 2991,
+      "F": 385
+    },
+    "val": {
+      "N": 9930,
+      "S": 195,
+      "V": 797,
+      "F": 29
+    },
+    "test": {
+      "N": 44245,
+      "S": 1837,
+      "V": 3220,
+      "F": 388
+    }
+  },
+  "dropped": {
+    "class_excluded": 15,
+    "boundary": 28
+  },
+  "per_record_log": [
+    {
+      "record_id": "100",
+      "n_annotated_beats": 2273,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 2,
+      "n_kept": 2271
+    },
+    {
+      "record_id": "101",
+      "n_annotated_beats": 1865,
+      "n_dropped_class": 2,
+      "n_dropped_boundary": 1,
+      "n_kept": 1862
+    },
+    {
+      "record_id": "103",
+      "n_annotated_beats": 2084,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2084
+    },
+    {
+      "record_id": "105",
+      "n_annotated_beats": 2572,
+      "n_dropped_class": 5,
+      "n_dropped_boundary": 0,
+      "n_kept": 2567
+    },
+    {
+      "record_id": "106",
+      "n_annotated_beats": 2027,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2027
+    },
+    {
+      "record_id": "108",
+      "n_annotated_beats": 1763,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1762
+    },
+    {
+      "record_id": "109",
+      "n_annotated_beats": 2532,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2531
+    },
+    {
+      "record_id": "111",
+      "n_annotated_beats": 2124,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2124
+    },
+    {
+      "record_id": "112",
+      "n_annotated_beats": 2539,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2539
+    },
+    {
+      "record_id": "113",
+      "n_annotated_beats": 1795,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1794
+    },
+    {
+      "record_id": "114",
+      "n_annotated_beats": 1879,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1879
+    },
+    {
+      "record_id": "115",
+      "n_annotated_beats": 1953,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1952
+    },
+    {
+      "record_id": "116",
+      "n_annotated_beats": 2412,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2411
+    },
+    {
+      "record_id": "117",
+      "n_annotated_beats": 1535,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1534
+    },
+    {
+      "record_id": "118",
+      "n_annotated_beats": 2278,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2277
+    },
+    {
+      "record_id": "119",
+      "n_annotated_beats": 1987,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1987
+    },
+    {
+      "record_id": "121",
+      "n_annotated_beats": 1863,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1863
+    },
+    {
+      "record_id": "122",
+      "n_annotated_beats": 2476,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2475
+    },
+    {
+      "record_id": "123",
+      "n_annotated_beats": 1518,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1517
+    },
+    {
+      "record_id": "124",
+      "n_annotated_beats": 1619,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1619
+    },
+    {
+      "record_id": "200",
+      "n_annotated_beats": 2601,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2600
+    },
+    {
+      "record_id": "201",
+      "n_annotated_beats": 1963,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1963
+    },
+    {
+      "record_id": "202",
+      "n_annotated_beats": 2136,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2136
+    },
+    {
+      "record_id": "203",
+      "n_annotated_beats": 2980,
+      "n_dropped_class": 4,
+      "n_dropped_boundary": 0,
+      "n_kept": 2976
+    },
+    {
+      "record_id": "205",
+      "n_annotated_beats": 2656,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2656
+    },
+    {
+      "record_id": "207",
+      "n_annotated_beats": 1860,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 1859
+    },
+    {
+      "record_id": "208",
+      "n_annotated_beats": 2955,
+      "n_dropped_class": 2,
+      "n_dropped_boundary": 2,
+      "n_kept": 2951
+    },
+    {
+      "record_id": "209",
+      "n_annotated_beats": 3005,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 3005
+    },
+    {
+      "record_id": "210",
+      "n_annotated_beats": 2650,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 2,
+      "n_kept": 2648
+    },
+    {
+      "record_id": "212",
+      "n_annotated_beats": 2748,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2747
+    },
+    {
+      "record_id": "213",
+      "n_annotated_beats": 3251,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 3250
+    },
+    {
+      "record_id": "214",
+      "n_annotated_beats": 2262,
+      "n_dropped_class": 2,
+      "n_dropped_boundary": 2,
+      "n_kept": 2258
+    },
+    {
+      "record_id": "215",
+      "n_annotated_beats": 3363,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 3363
+    },
+    {
+      "record_id": "219",
+      "n_annotated_beats": 2154,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2154
+    },
+    {
+      "record_id": "220",
+      "n_annotated_beats": 2048,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 2,
+      "n_kept": 2046
+    },
+    {
+      "record_id": "221",
+      "n_annotated_beats": 2427,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2427
+    },
+    {
+      "record_id": "222",
+      "n_annotated_beats": 2483,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2482
+    },
+    {
+      "record_id": "223",
+      "n_annotated_beats": 2605,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2605
+    },
+    {
+      "record_id": "228",
+      "n_annotated_beats": 2053,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2053
+    },
+    {
+      "record_id": "230",
+      "n_annotated_beats": 2256,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 1,
+      "n_kept": 2255
+    },
+    {
+      "record_id": "231",
+      "n_annotated_beats": 1571,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1571
+    },
+    {
+      "record_id": "232",
+      "n_annotated_beats": 1780,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 1780
+    },
+    {
+      "record_id": "233",
+      "n_annotated_beats": 3079,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 2,
+      "n_kept": 3077
+    },
+    {
+      "record_id": "234",
+      "n_annotated_beats": 2753,
+      "n_dropped_class": 0,
+      "n_dropped_boundary": 0,
+      "n_kept": 2753
+    }
+  ]
+}
