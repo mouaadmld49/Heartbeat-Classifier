@@ -1,0 +1,16 @@
+fs: 360
+pre: 90                 # indice du pic R dans la fenêtre (doit égaler window.pre)
+qrs:
+  half_search: 10       # recherche du pic dominant : ±10 échantillons (±28 ms)
+  slope_half: 36        # zone de pente : ±36 échantillons (±100 ms)
+  slope_frac: 0.25      # seuil = 25 % de la pente maximale
+freq_bands_hz:
+  0p5_5: [0.5, 5]
+  5_10: [5, 10]
+  10_15: [10, 15]
+  15_25: [15, 25]
+  25_40: [25, 40]
+input:
+  dataset: data/processed/mitdb_beats_v1.npz
+output:
+  features: data/processed/mitdb_features_v1.csv.gz
