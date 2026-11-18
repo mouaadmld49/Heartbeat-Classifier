@@ -1,24 +1,43 @@
-"""Détection des pics R (inspirée de Pan & Tompkins, 1985) et évaluation."""
+"""Détection des pics R (inspirée de Pan & Tompkins, 1985), seuil adaptatif."""
 import numpy as np
+import pandas as pd
 from scipy import signal
 
 
-def detect_r_peaks(x, fs=360, refractory_s=0.25, thr_ratio=0.2):
-    """Retourne les indices des pics R détectés.
-
-    thr_ratio est un seuil heuristique (fraction du 99,5e percentile de
-    l'énergie intégrée) : à ajuster si la sensibilité ou le PPV sont faibles.
-    """
+def qrs_energy(x, fs=360):
+    """Retourne (signal filtré 5-15 Hz, énergie intégrée sur 150 ms)."""
     x = np.asarray(x, dtype=np.float64)
     sos = signal.butter(2, [5, 15], btype="bandpass", fs=fs, output="sos")
-    f = signal.sosfiltfilt(sos, x)               # isole l'énergie du QRS
-    energy = np.gradient(f) ** 2                 # dérivée puis carré
+    f = signal.sosfiltfilt(sos, x)
+    energy = np.gradient(f) ** 2                      # dérivée puis carré
     w = int(0.15 * fs)
-    mwi = np.convolve(energy, np.ones(w) / w, mode="same")  # intégration
-    thr = thr_ratio * np.percentile(mwi, 99.5)
-    cand, _ = signal.find_peaks(mwi, height=thr, distance=int(refractory_s * fs))
+    mwi = np.convolve(energy, np.ones(w) / w, mode="same")
+    return f, mwi
 
-    r = int(0.075 * fs)                          # affinage autour du candidat
+
+def detect_r_peaks(x, fs=360, refractory_s=0.25, rel_thr=0.15,
+                   k_neighbors=10, floor_ratio=0.01):
+    """Pics R détectés avec un seuil LOCAL.
+
+    1) candidats = pics de l'énergie au-dessus d'un plancher très bas
+       (floor_ratio x 99,5e percentile), séparés d'au moins refractory_s ;
+    2) chaque candidat est conservé si sa hauteur dépasse rel_thr x médiane
+       des hauteurs de ses 2*k_neighbors+1 voisins (le seuil s'adapte à
+       l'amplitude locale, donc aux QRS petits comme grands).
+    rel_thr et floor_ratio sont des hyperparamètres : à choisir sur DS1.
+    """
+    f, mwi = qrs_energy(x, fs)
+    floor = floor_ratio * np.percentile(mwi, 99.5)
+    cand, props = signal.find_peaks(mwi, height=floor,
+                                    distance=int(refractory_s * fs))
+    if len(cand) == 0:
+        return np.array([], dtype=np.int64)
+    h = props["peak_heights"]
+    local = (pd.Series(h).rolling(2 * k_neighbors + 1, center=True, min_periods=1)
+             .median().to_numpy())
+    cand = cand[h >= rel_thr * local]
+
+    r = int(0.075 * fs)                               # affinage autour du candidat
     peaks = []
     for c in cand:
         lo, hi = max(0, c - r), min(len(f), c + r + 1)
@@ -27,10 +46,7 @@ def detect_r_peaks(x, fs=360, refractory_s=0.25, thr_ratio=0.2):
 
 
 def evaluate_detection(ref, det, tol):
-    """Apparie détections et références (tolérance tol, en échantillons).
-
-    Retourne (TP, FP, FN). Chaque détection ne peut servir qu'une fois.
-    """
+    """Apparie détections et références (tol en échantillons). Retourne (TP, FP, FN)."""
     ref, det = np.asarray(ref), np.asarray(det)
     used = np.zeros(len(det), dtype=bool)
     tp = 0
