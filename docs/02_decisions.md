@@ -13,3 +13,9 @@
 - Limite connue : les records 201 (DS1) et 202 (DS2) viennent du même patient.
   Protocole conservé pour la comparabilité ; analyse de sensibilité sans 202 prévue en Phase 9.
 - Changement de distribution : S = 1,85 % dans DS1 contre 3,70 % dans DS2.
+- F est essentiellement un seul patient par split : 208 = 372/385 F (train), 213 = 362/388 F (test).
+  Le recall de F est donc quasi un recall par patient. Il est toujours rapporté avec sa répartition par record.
+- Sélection d'hyperparamètres : StratifiedGroupKFold par record sur DS1, critère Macro-F1 sur N, S, V (F exclu du critère).
+- Évaluation finale : DS1 -> DS2 (principale), puis DS2 -> DS1 (sensibilité : F testé sur 208 puis 213).
+- Détecteur R : rel_thr = 0,15, floor_ratio = 0,03, choisis sur DS1 (F1 max avec pire record >= 95 %).
+- SMOTE non utilisé : F vient d'un seul patient, l'interpolation créerait des quasi-copies de ce patient.

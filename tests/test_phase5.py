@@ -55,7 +55,7 @@ def test_focal_downweights_easy_examples():
     t = torch.tensor([0])
     ratio_easy = FocalLoss(2.0)(easy, t) / nn.CrossEntropyLoss()(easy, t)
     ratio_hard = FocalLoss(2.0)(hard, t) / nn.CrossEntropyLoss()(hard, t)
-    assert ratio_easy < 0.01 < 0.5 < ratio_hard + 1   # facile : quasi annulé ; difficile : conservé
+    assert ratio_easy < 0.01 and 0.1 < ratio_hard < 0.5   # facile : quasi annulé ; difficile : conservé
     assert ratio_easy < ratio_hard
 
 

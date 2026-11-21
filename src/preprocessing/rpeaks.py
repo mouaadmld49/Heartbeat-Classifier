@@ -16,7 +16,7 @@ def qrs_energy(x, fs=360):
 
 
 def detect_r_peaks(x, fs=360, refractory_s=0.25, rel_thr=0.15,
-                   k_neighbors=10, floor_ratio=0.01):
+                   k_neighbors=10, floor_ratio=0.03):
     """Pics R détectés avec un seuil LOCAL.
 
     1) candidats = pics de l'énergie au-dessus d'un plancher très bas
